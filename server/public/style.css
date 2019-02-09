@@ -1,0 +1,66 @@
+/* ------------------------------------- */
+/* BASIC SETUP */
+/* ------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0 20px;
+}
+
+/* ------------------------------------- */
+/* REUSABLE COMPONENTS */
+/* ------------------------------------- */
+
+.row {
+    max-width: 960px;
+    margin: 20px auto;
+}
+
+button {
+  border: 1px, solid;
+  color: black;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 22px;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+/* ------------------------------------- */
+/* HEADINGS */
+/* ------------------------------------- */
+
+h1 {
+    font-size: 60px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* ------------------------------------- */
+/* INPUT CALCUATION */
+/* ------------------------------------- */
+
+#calc-input-row {
+    display: flex;
+    
+}
+
+#calc-input-row input {
+    width: 100%;
+    border: 1px solid #c7c6c6;
+    text-align: left;
+    padding: 8px;
+    font-size: 22px;
+    margin-right: 4px;
+}
+
+/* ------------------------------------- */
+/* OUTPUT CALCUATION */
+/* ------------------------------------- */
