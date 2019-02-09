@@ -17,7 +17,7 @@ body {
 /* ------------------------------------- */
 
 .row {
-    max-width: 960px;
+    max-width: 640px;
     margin: 20px auto;
 }
 
@@ -27,9 +27,9 @@ button {
   padding: 8px 20px;
   text-align: center;
   text-decoration: none;
-  /* display: inline-block; */
   font-size: 22px;
   margin-right: 4px;
+  outline:none;
   cursor: pointer;
 }
 
@@ -64,3 +64,10 @@ h1 {
 /* ------------------------------------- */
 /* OUTPUT CALCUATION */
 /* ------------------------------------- */
+
+#calc-output-list li {
+    list-style: none;
+    font-size: 20px;
+    margin-bottom: 3px;
+    letter-spacing: 2px;
+}
