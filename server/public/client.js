@@ -1,6 +1,6 @@
 $(document).ready(onReady);
 
-let calcMethod;
+let operator;
 
 function onReady() {
     console.log('jquery is running');
@@ -8,10 +8,10 @@ function onReady() {
     // get the current content from 'calculations' array of objects on the server and append to DOM
     getCalculation();
 
-    // will store the current calculation method to varialbe 'calcMethod' based on button clicked on DOM
-    $('.calc-btn').on('click', function () {
-        console.log('calc method is:', $(this).text());
-        calcMethod = $(this).text();
+    // will store the current calculation operator to variable 'operator' based on button clicked on DOM
+    $('.operator-btn').on('click', function () {
+        console.log('calc operator is:', $(this).text());
+        operator = $(this).text();
         $(this).css('background-color', '#5c918c');
     });
 
@@ -36,7 +36,7 @@ function submitCalculation() {
         url: '/post-calculation',
         data: {
             inputFirst: $('#number-first-input').val(),
-            calcMethod: calcMethod,
+            operator: operator,
             inputSecond: $('#number-second-input').val()
         }
     }).then(function () {
@@ -65,7 +65,7 @@ function getCalculation() {
             $('#calc-output-number').append(`${calculations.calcTotal}
         `)
             $('#calc-output-list').append(`
-        <li>${calculations.inputFirst} ${calculations.calcMethod} ${calculations.inputSecond} &#x0003D ${calculations.calcTotal} 
+        <li>${calculations.inputFirst} ${calculations.operator} ${calculations.inputSecond} &#x0003D ${calculations.calcTotal} 
         `);
 
         });

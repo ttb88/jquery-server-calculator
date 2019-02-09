@@ -33,21 +33,21 @@ app.get('/get-calculation', (req, res) => {
 });
 
 
-// calculate the total of what was inputed and submitted from calculator on DOM
+// calculate the total of what was submitted from calculator on DOM
 function executeCalculation(calcInput) {
     calcInput.inputFirst = Number(calcInput.inputFirst);
     calcInput.inputSecond = Number(calcInput.inputSecond);
 
-    if (calcInput.calcMethod == '+') {
+    if (calcInput.operator == '+') {
         return calcInput.inputFirst + calcInput.inputSecond;
     }
-    if (encodeURI(calcInput.calcMethod) == '%E2%88%92') {
+    if (encodeURI(calcInput.operator) == '%E2%88%92') {
         return calcInput.inputFirst - calcInput.inputSecond;
     }
-    if (encodeURI(calcInput.calcMethod) == '%C3%97') {
+    if (encodeURI(calcInput.operator) == '%C3%97') {
         return calcInput.inputFirst * calcInput.inputSecond;
     }
-    if (encodeURI(calcInput.calcMethod) == "%C3%B7") {
+    if (encodeURI(calcInput.operator) == "%C3%B7") {
         return calcInput.inputFirst / calcInput.inputSecond;
     }
 }
