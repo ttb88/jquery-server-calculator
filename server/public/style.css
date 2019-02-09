@@ -18,17 +18,20 @@ body {
 
 .row {
     max-width: 640px;
-    margin: 20px auto;
+    margin: 0px auto;
 }
 
 button {
   border: 1px, solid;
+  width: 4em;
+  height: 4em;
   color: black;
   padding: 8px 20px;
   text-align: center;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 30px;
   margin-right: 4px;
+  margin-bottom: 8px;
   outline:none;
   cursor: pointer;
 }
@@ -41,25 +44,40 @@ h1 {
     font-size: 60px;
     letter-spacing: 2px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 /* ------------------------------------- */
 /* INPUT CALCUATION */
 /* ------------------------------------- */
 
+#section-calculator {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 #calc-input-row {
     display: flex;
+    margin-bottom: 8px;
     
 }
 
 #calc-input-row input {
-    width: 100%;
+    width: 356px;
     border: 1px solid #c7c6c6;
     text-align: left;
-    padding: 8px;
+    padding: 0 8px;
     font-size: 22px;
-    margin-right: 4px;
+    margin-right: 8px;
 }
+
+#calc-input-row button {
+    margin-bottom: 0;
+}
+
+
 
 /* ------------------------------------- */
 /* OUTPUT CALCUATION */
