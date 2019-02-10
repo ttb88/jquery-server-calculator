@@ -51,3 +51,8 @@ function executeCalculation(calcInput) {
         return calcInput.inputFirst / calcInput.inputSecond;
     }
 }
+
+app.delete('/delete-history', (req, res) => {
+    calculations = [];
+    res.send('history has been cleared on server');
+});

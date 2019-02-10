@@ -36,6 +36,10 @@ button {
   cursor: pointer;
 }
 
+button:active {
+    background-color: #9afaf4;
+}
+
 /* ------------------------------------- */
 /* HEADINGS */
 /* ------------------------------------- */
@@ -52,10 +56,24 @@ h1 {
 /* ------------------------------------- */
 
 #section-calculator {
-    display: flex;
+    /* display: flex; */
     align-content: center;
     justify-content: center;
     margin-bottom: 20px;
+    text-align: left;
+    font-size: 22px;
+}
+
+#calc-display-box {
+    width: 374px;
+    border: 1px solid #c7c6c6;
+    margin-right: 8px;
+    padding: 20px 10px;
+    font-size: 50px;
+}
+
+#operator-text {
+   margin: 0 3px 0 3px;
 }
 
 #calc-input-row {
@@ -64,19 +82,9 @@ h1 {
     
 }
 
-#calc-input-row input {
-    width: 356px;
-    border: 1px solid #c7c6c6;
-    text-align: left;
-    padding: 0 8px;
-    font-size: 22px;
-    margin-right: 8px;
-}
-
 #calc-input-row button {
     margin-bottom: 0;
 }
-
 
 
 /* ------------------------------------- */
@@ -88,4 +96,9 @@ h1 {
     font-size: 20px;
     margin-bottom: 3px;
     letter-spacing: 2px;
+}
+
+#clear-history-btn {
+    width: 500px;
+    height: 60px;
 }

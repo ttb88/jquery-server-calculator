@@ -20,40 +20,44 @@
     <section id="section-calculator">
         <div class="row">
             <div id="calc-input-row">
-                <input type="number" id="number-first-input">
+                <div id="calc-display-box">
+                    <p id="calc-display-text"></p>
+                </div>
                 <button id="clear-btn">C</button>
             </div>
-            <div class="row">
-                <button class="number-btn">7</button>
-                <button class="number-btn">8</button>
-                <button class="number-btn">9</button>
-                <button id="plus-btn" class="operator-btn">&#x0002B</button>
-            </div>
-            <div class="row">
-                <button class="number-btn">4</button>
-                <button class="number-btn">5</button>
-                <button class="number-btn">6</button>
-                <button id="minus-btn" class="operator-btn">&#x02212</button>
-            </div>
-            <div class="row">
-                <button class="number-btn">1</button>
-                <button class="number-btn">2</button>
-                <button class="number-btn">3</button>
-                <button id="times-btn" class="operator-btn">&#x000D7</button>
-            </div>
-            <div class="row">
-                <button class="number-btn">0</button>
-                <button class="number-btn">.</button>
-                <button id="equals-submit-btn">&#x0003D</button>
-                <button id="divide-btn" class="operator-btn">&divide</button>
-            </div>
-        </section>
+        </div>    
+        <div class="row">
+            <button class="number-btn">7</button>
+            <button class="number-btn">8</button>
+            <button class="number-btn">9</button>
+            <button id="plus-btn" class="operator-btn">&#x0002B</button>
+        </div>
+        <div class="row">
+            <button class="number-btn">4</button>
+            <button class="number-btn">5</button>
+            <button class="number-btn">6</button>
+            <button id="minus-btn" class="operator-btn">&#x02212</button>
+        </div>
+        <div class="row">
+            <button class="number-btn">1</button>
+            <button class="number-btn">2</button>
+            <button class="number-btn">3</button>
+            <button id="times-btn" class="operator-btn">&#x000D7</button>
+        </div>
+        <div class="row">
+            <button class="number-btn">0</button>
+            <button class="number-btn">.</button>
+            <button id="equals-submit-btn">&#x0003D</button>
+            <button id="divide-btn" class="operator-btn">&divide</button>
+        </div>    
+    </section>
 
     <div class="row">
         <h2 id="calc-output-number"></h2>
     </div>
 
     <div class="row">
+        <button id="clear-history-btn">Clear History</button>
         <ul id="calc-output-list"></ul>
     </div>
 
