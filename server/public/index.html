@@ -9,6 +9,7 @@
     <script src="client.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
     <title>Server Side Calculator</title>
 </head>
 
@@ -16,15 +17,13 @@
     <div class="row">
         <h1>Server Side Calculator</h1>
     </div>
-
+   
     <section id="section-calculator">
-        <div class="row">
-            <div id="calc-input-row">
-                <div id="calc-display-box">
-                    <p id="calc-display-text"></p>
-                </div>
-                <button id="clear-btn">C</button>
+        <div class="row" id="calc-input-row">
+            <div id="calc-display-box">
+                <p id="calc-display-text"></p>
             </div>
+            <button id="clear-btn">C</button>
         </div>    
         <div class="row">
             <button class="number-btn">7</button>
@@ -49,7 +48,10 @@
             <button class="number-btn">.</button>
             <button id="equals-submit-btn">&#x0003D</button>
             <button id="divide-btn" class="operator-btn">&divide</button>
-        </div>    
+        </div>
+        <div class="row">
+            <button id="clear-history-btn">Clear History</button>
+        </div>
     </section>
 
     <div class="row">
@@ -57,7 +59,6 @@
     </div>
 
     <div class="row">
-        <button id="clear-history-btn">Clear History</button>
         <ul id="calc-output-list"></ul>
     </div>
 
