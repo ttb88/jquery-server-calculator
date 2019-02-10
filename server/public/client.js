@@ -1,10 +1,9 @@
 $(document).ready(onReady);
 
-let operator, inputFirst, inputSecond, currentTotal;
+let operator, inputFirst, inputSecond, currentTotal, calcDisplay;
 let inputNumberConcatenate = '';
-// let inputFirst;
-// let inputSecond;
-// let currentTotal;
+
+
 
 function onReady() {
     console.log('jquery is running');
@@ -12,49 +11,62 @@ function onReady() {
     // get the current content from 'calculations' array of objects on the server and append to DOM
     getCalculation();
 
-    // will store the current calculation operator to variable 'operator' based on button clicked on DOM
-    $('.operator-btn').on('click', operatorClicked); 
+    // receives all operator buttons that are clicked on DOM and runs function 'operatorClicked'
+    $('.operator-btn').on('click', operatorClicked);
 
-    // recives all number buttons that are clicked
+    // receives all number buttons that are clicked on DOM and runs function 'numberClicked'
     $('.number-btn').on('click', numberClicked);
 
-    // will run upon click of the equals button on DOM
+    // receives '=' button when clicked on DOM and runs function 'submitCalculation'
     $('#equals-submit-btn').on('click', submitCalculation);
 
-    // clear user input fields when 'C' button is clicked
+    // clears user input fields when 'C' button is clicked on DOM
     $('#clear-btn').on('click', function () {
         $('#calc-display-text').empty();
     });
 
-    // up click of delete history button the array of objects will be deleted on server
+    // upon click of 'Delete History' button on DOM the array of objects will be deleted on server
     $('#clear-history-btn').on('click', deleteHistory);
 
+    $('#calc-output-list').on('click', '.calc-list-item', rerunCalculation);
 }
 
-// store each clicked number button to variable 'inputNumberConcatenate' and append to DOM
+
+
+// receives number button clicked and runs through conditional 
 function numberClicked() {
     console.log('number button clicked');
-    if (currentTotal == $('#calc-display-text').text() && operator == '') {
-        alert('Either clear or click operator to continue.') 
+    calcDisplay = $('#calc-display-text')
+    //alert displayed if number button is clicked while a prior calculation total is still in calulator display
+    if (currentTotal == calcDisplay.text() && operator == '') {
+        alert('Either click clear or an operator button to continue.')
     }
+    //if calculator display is clear or an operator has been set the clicked number button will append to display
     else {
-        inputButtonText = $(this).text();
-        $('#calc-display-text').append(inputButtonText);
-        inputNumberConcatenate += inputButtonText;
+        inputNumberButton = $(this).text();
+        calcDisplay.append(inputNumberButton);
+        //each click concatenates and stores into the variable 'inputNumberConcatenate'
+        inputNumberConcatenate += inputNumberButton;
         console.log(inputNumberConcatenate);
     }
 }
 
-// store the clicked operator button to variable 'operator' and append to DOM
-function operatorClicked () {
+
+
+// receive operator button clicked and run through series of conditionals
+function operatorClicked() {
     operator = $(this).text();
+    calcDisplay = $('#calc-display-text');
     console.log('calc operator is:', $(this).text());
 
-    if ($('#calc-display-text').text()) {
+    // if calculator display isn't empty 
+    if (calcDisplay.text()) {
+        // if calculator display contains previous total it will set 'currenTotal' to 'inputFirst (allows previous total to be futher calculated)
         if (inputNumberConcatenate == '') {
             inputFirst = currentTotal;
             appendOperator();
         }
+        // 
         else {
             appendOperator();
             // sets current string of 'inputNumberConcatenate' to 'inputFirst'
@@ -62,29 +74,29 @@ function operatorClicked () {
             //clears out 'inputNumberConcatenate' for next number input
             inputNumberConcatenate = '';
         }
+    }
+    // if calculator display is empty alert will display
+    else {
+        alert('Please enter a number first.')
+    }
 
-        function appendOperator() {
-            // appends operator to DOM
-            $('#calc-display-text').append(`
+    // appends operator to calculator display
+    function appendOperator() {
+        calcDisplay.append(`
         <span id="operator-text">
         ${operator}
         </span>`)
-        } 
+    }
 
-    }
-    else {
-        alert('Please enter a number first.') 
-    }
-    
 }
 
 
 
-// will send to server the inputs from calculator on DOM
+// will send to server the inputs from calculator on DOM only if all information is included
 function submitCalculation() {
-    // if an operator or second number has NOT been chosen an alert will display
+    // if an operator or second number has NOT been set an alert will display
     if (operator == '' || inputNumberConcatenate == '') {
-        alert('Your calculation is not complete.') 
+        alert('Your calculation is not complete.')
     }
     else {
         // sets current string of 'inputNumberConcatenate' to 'inputSecond'
@@ -104,8 +116,6 @@ function submitCalculation() {
             getCalculation();
         })
 
-        $('#calc-display-text').empty();
-        inputNumberConcatenate = ''  
     }
 }
 
@@ -113,29 +123,35 @@ function submitCalculation() {
 
 // get the current content from 'calculations' array of objects on the server and append to DOM
 function getCalculation() {
-    
+
     $.ajax({
         method: 'GET',
         url: '/get-calculation'
     }).then(function (response) {
+        console.log('Calculations:', response);
         operator = '';
-        console.log(currentTotal);
-
+        inputNumberConcatenate = ''
+        calcDisplay = $('#calc-display-text');
+        
         $('#calc-output-list').empty();
-        console.log(response);
 
-        response.forEach(function (calculations) {
-            $('#calc-display-text').empty();
-            $('#calc-display-text').append(`${parseFloat(calculations.calcTotal.toFixed(5))}
-        `)
+        // for each loop through calculations array of objects and append to DOM
+        response.forEach(function (calculations, i) {
+            let calcTotalParsed = parseFloat(calculations.calcTotal.toFixed(5));
+            let inputFirstParsed = parseFloat(calculations.inputFirst.toFixed(5));
+            let inputSecondParsed = parseFloat(calculations.inputSecond.toFixed(5));
+            calcDisplay.empty();
+
+            calcDisplay.append(`${calcTotalParsed}`);
+
             $('#calc-output-list').append(`
-        <li>${calculations.inputFirst} ${calculations.operator} ${calculations.inputSecond} &#x0003D ${parseFloat(calculations.calcTotal.toFixed(5))} 
-        `); 
+            <li class="calc-list-item" data-index="${i}">${inputFirstParsed} ${calculations.operator} ${inputSecondParsed}</li>`);
+
             currentTotal = calculations.calcTotal;
-            console.log(currentTotal);
         });
-    })  
+    })
 }
+
 
 
 // delete array of objects on server
@@ -146,7 +162,22 @@ function deleteHistory() {
     }).then(function (response) {
         console.log(response);
         $('#calc-display-text').empty();
-        console.log(currentTotal);
         $('#calc-output-list').empty();
-    }) 
+    })
+}
+
+function rerunCalculation() {
+    let calcIndex = $(this).data().index;
+    calcDisplay = $('#calc-display-text');
+    $(this).css('color', '#00a59a');      
+    $(this).siblings().css('color', 'black');
+  
+    $.ajax({
+        method: 'GET',
+        url: '/get-calculation'
+    }).then(function (response) {
+        calcDisplay.empty();
+        let calcTotalParsed = parseFloat(response[calcIndex].calcTotal.toFixed(5));
+        calcDisplay.append(`${calcTotalParsed}`);
+    })
 }
