@@ -8,7 +8,6 @@
 }
 
 body {
-    /* font-family: 'Lato', sans-serif; */
     font-family: 'Staatliches', cursive;
     margin: 0 20px;
     background-image: url("pipes.png");
@@ -56,7 +55,7 @@ h1 {
     letter-spacing: 2px;
     line-height: 95%;
     text-align: center;
-    margin: 20px 0 35px 0;
+    margin: 40px 0 35px 0;
 }
 
 /* ------------------------------------- */

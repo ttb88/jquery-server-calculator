@@ -71,7 +71,7 @@ function operatorClicked() {
         else if (operator !== '') {
             alert('Please click the "=" button to complete calculation.')
         }
-        // when NOT attempting to calculate on top of a previous total
+        // when starting new calculation and NOT attempting to calculate on top of a previous total
         else {
             appendOperator();
             // sets current string of 'inputNumberConcatenate' to 'inputFirst'
@@ -84,8 +84,6 @@ function operatorClicked() {
     else {
         alert('Please enter a number first.')
     }
-
-    
 
     // appends operator to calculator display
     function appendOperator() {
@@ -120,10 +118,8 @@ function submitCalculation() {
                 inputSecond: inputSecond
             }
         }).then(function () {
-            // get the current content from 'calculations' array of objects on the server and append to DOM
             getCalculation();
         })
-
     }
 }
 
@@ -143,7 +139,7 @@ function getCalculation() {
         
         $('#calc-output-list').empty();
 
-        // for each loop through calculations array of objects and append to DOM
+        // for each loop will run through 'calculations' and append to DOM
         response.forEach(function (calculations, i) {
             let calcTotalParsed = parseFloat(calculations.calcTotal.toFixed(2));
             let inputFirstParsed = parseFloat(calculations.inputFirst.toFixed(2));
@@ -162,7 +158,7 @@ function getCalculation() {
 
 
 
-// delete entire calcualtion history which is the 'calculations' array of objects on the server
+// delete entire calculations history from array 'calculations' on the server
 function deleteHistory() {
     $.ajax({
         url: '/delete-history',

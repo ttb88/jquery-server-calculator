@@ -27,13 +27,13 @@ app.post('/post-calculation', (req, res) => {
 });
 
 
-// send the current contents of the 'calculations' array of objects
+// send the current contents of 'calculations'
 app.get('/get-calculation', (req, res) => {
     res.send(calculations);
 });
 
 
-// calculate the total of what was submitted from calculator on DOM
+// calculate the total of what was submitted
 function executeCalculation(calcInput) {
     calcInput.inputFirst = Number(calcInput.inputFirst);
     calcInput.inputSecond = Number(calcInput.inputSecond);
@@ -52,6 +52,7 @@ function executeCalculation(calcInput) {
     }
 }
 
+// clear the contents from 'calculations'
 app.delete('/delete-history', (req, res) => {
     calculations = [];
     res.send('history has been cleared on server');
