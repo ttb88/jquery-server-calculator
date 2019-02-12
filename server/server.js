@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 let calculations = [];
 
 
-// recieve the inputs of the calculator on the DOM
+// receive the inputs of the calculator on the DOM
 app.post('/post-calculation', (req, res) => {
     let calcInput = req.body;
     console.log(calcInput);

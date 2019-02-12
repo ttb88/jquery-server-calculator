@@ -22,6 +22,7 @@ function onReady() {
     // clears user input fields when 'C' button is clicked on DOM
     $('#clear-btn').on('click', function () {
         $('#calc-display-text').empty();
+        inputNumberConcatenate = '';
         operator = ''
     });
 
@@ -62,7 +63,7 @@ function operatorClicked() {
 
     // if calculator display isn't empty 
     if (calcDisplay.text()) {
-        // if calculator display contains previous total it will set 'currenTotal' to 'inputFirst (allows previous total to be futher calculated)
+        // if calculator display contains previous total it will set 'currentTotal' to 'inputFirst (allows previous total to be futher calculated)
         if (inputNumberConcatenate == '') {
             inputFirst = currentTotal;
             appendOperator();
@@ -167,6 +168,7 @@ function deleteHistory() {
         console.log(response);
         $('#calc-display-text').empty();
         $('#calc-output-list').empty();
+        operator = '';
     })
 }
 
