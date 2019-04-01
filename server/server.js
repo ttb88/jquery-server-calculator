@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 let bodyParser = require('body-parser');
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -57,3 +57,5 @@ app.delete('/delete-history', (req, res) => {
     calculations = [];
     res.send('history has been cleared on server');
 });
+
+console.log('calculations', calculations)
